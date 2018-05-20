@@ -53,8 +53,11 @@ table.diamondsweeper-board {
     padding: 0;
     border: 1px solid #aba9a9;
     box-shadow: 1px 1px 1px #a79797;
-    animation : colAnimation;
+    &.init
+    {
+      animation : colAnimation;
     animation-duration : 3s;
+    }
     &.hint {
       border: 1px solid red;
       animation : flip;
@@ -72,10 +75,14 @@ table.diamondsweeper-board {
 .cell {
   height: 50px;
   width: 50px;
-  background-size: 50px 50px;
+  background-size: 100%;
+  background-repeat:no-repeat;
+  background-position: center; 
 
   &.diamond {
     background-image: url(diamond.png);
+    animation : dimondAnimation;
+    animation-duration : 3s;
   }
 
   &.arrow {
@@ -85,6 +92,7 @@ table.diamondsweeper-board {
   &.unknown {
     background-image: url(question.png);
     cursor: pointer;
+    
   }
 }
 li.hint-list {
@@ -132,5 +140,29 @@ li.hint-list {
   {
     position: relative;
     top: 0px;
+  }
+}
+
+@keyframes dimondAnimation
+{
+  0%
+  {
+    background-size: 100%;
+  }
+  25%
+  {
+    background-size: 75%;
+  }
+  50%
+  {
+    background-size: 50%;
+  }
+  75%
+  {
+    background-size: 75%;
+  }
+  100%
+  {
+    background-size: 100%;
   }
 }

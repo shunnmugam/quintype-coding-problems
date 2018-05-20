@@ -4,7 +4,7 @@ class HomeController
 	constructor($scope)
 	{
 		this.$scope = $scope;
-
+		this.$scope.status = 0; //inital state
 		this.$scope.env = env;		
 		$scope.onClick = this.onClick.bind(this);
 		$scope.restart = this.restart.bind(this);
@@ -42,12 +42,15 @@ class HomeController
 			rows : rows_array,
 			col : col_array
 		}
+
 	}
 
 	onClick(index)
 	{
-		if(this.$scope.correct_ans_array.length<env.DIMONDS_COUNT){
-			if(this.$scope.random_array.indexOf(index)!=-1)
+		this.$scope.status = 1; //dirty
+		console.log(this.$scope.random_array)
+		if(this.$scope.correct_ans_array.length<this.$scope.env.DIMONDS_COUNT){
+			if(this.$scope.random_array.indexOf(index)>=0)
 			{
 				this.$scope.correct_ans_array.push(index);
 				this.$scope.heigh_light = 0;
@@ -69,13 +72,14 @@ class HomeController
 				  return (Math.abs(curr - index) < Math.abs(prev - index) ? curr : prev);
 				});
 
-			console.log(remaing);
+			//console.log(remaing);
 
 			}
 		}
 	}
 	restart()
 	{
+		this.$scope.status = 2; //restarted
 		this.init();
 	}
 	scoreFinder()

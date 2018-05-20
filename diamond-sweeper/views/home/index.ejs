@@ -27,7 +27,7 @@
         <table class="diamondsweeper-board">
           <tbody ng-init="count=0">
             <tr ng-repeat="r in table_details.rows">
-              <td ng-repeat="c in table_details.col" ng-init="count=($index+1)+($parent.$index*8)" class="{{(heigh_light==count ? 'hint' : '' ) }}">
+              <td ng-repeat="c in table_details.col" ng-init="count=($index+1)+($parent.$index*env.COLUMNS_COUNT)" class="{{(heigh_light==count ? 'hint' : '' ) +' '+ (status===0 ? 'init' : '') }}">
                 <div ng-click="onClick(count)" class="cell {{(correct_ans_array.indexOf(count)!=-1 ? 'diamond' : (wrong_ans_array.indexOf(count)!=-1 ? 'wrong' : 'unknown' ))}}"></div>
               </td>
             </tr>
@@ -42,6 +42,18 @@
           </li>
           <li class="hint-list">
             There are {{env.DIMONDS_COUNT}} diamonds hidden on the board, each diamond behind one of the squares
+          </li>
+          <li class="hint-list">
+            When you clicks on a square
+              <ul>
+                <li>
+                  If the square was hiding a diamond, the diamond appears
+                  Otherwise, the square is opened, and blank
+                </li>
+              </ul>
+          </li>
+          <li class="hint-list">
+              The game ends when all diamonds are found.
           </li>
         </ul>
         </div>
