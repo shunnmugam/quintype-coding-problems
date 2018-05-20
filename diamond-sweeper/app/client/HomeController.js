@@ -52,13 +52,16 @@ class HomeController
 		if(this.$scope.correct_ans_array.length<this.$scope.env.DIMONDS_COUNT){
 			if(this.$scope.random_array.indexOf(index)>=0)
 			{
-				this.$scope.correct_ans_array.push(index);
-				this.$scope.heigh_light = 0;
+				if(this.$scope.correct_ans_array.indexOf(index)==-1){
+					this.$scope.correct_ans_array.push(index);
+					this.$scope.heigh_light = 0;
+				}
 				//console.log(this.$scope.random_array)
 				this.scoreFinder();
 			}
 			else
 			{
+				if(this.$scope.wrong_ans_array.indexOf(index)==-1)
 				this.$scope.wrong_ans_array.push(index);
 
 				let remaing = [];
@@ -70,7 +73,8 @@ class HomeController
 				}
 				
 				this.$scope.heigh_light = remaing.reduce(function(prev, curr) {
-				  return (Math.abs(curr - index) < Math.abs(prev - index) ? curr : prev);
+				  let score =  (Math.abs(curr - index) < Math.abs(prev - index) ? curr : prev);
+				  return (score<0) ? 0 : score;
 				});
 
 			//console.log(remaing);

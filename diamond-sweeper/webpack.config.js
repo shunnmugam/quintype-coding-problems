@@ -1,6 +1,8 @@
 const webpack = require("webpack");
 const process = require('process');
 const path = require('path');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
+
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -28,7 +30,11 @@ module.exports = {
       rules: [
         { test: /\.jsx?$/, exclude: /node_modules/, use: BABEL_PRESET },
         { test: /\.jsx?$/, include: /node_modules\/quintype-toddy-libs/, use: BABEL_PRESET },
-        { test: /\.(sass|scss)$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader') },
+        { test: /\.(sass|scss)$/,
+          use: ExtractTextPlugin.extract({
+                    use: [{ loader: 'css-loader', options: { minimize: true } }, 'sass-loader'],
+                }),
+        },
         {
           test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
           loader: "file-loader",
@@ -39,5 +45,5 @@ module.exports = {
         }
       ]
     },
-    plugins: [new ExtractTextPlugin({ filename: "[name].css", allChunks: true })]
+    plugins: [new ExtractTextPlugin({ filename: "[name].css", allChunks: true }),new MinifyPlugin()]
 };
