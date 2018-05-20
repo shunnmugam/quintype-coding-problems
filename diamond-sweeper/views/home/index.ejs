@@ -19,6 +19,10 @@
           
         
         <div class="btn-container">
+          <span class="rem">
+            Remaing Dimonds
+            {{(env.DIMONDS_COUNT - correct_ans_array.length)}}
+          </span>
           <button ng-click="restart()" class="reset-btn">
             Restart
           </button>
