@@ -29,7 +29,7 @@ class HomeController
 		    if(random_array.indexOf(randomnumber) > -1) continue;
 		    random_array[random_array.length] = randomnumber;
 		}
-		console.log(random_array);
+		//console.log(random_array);
 		this.$scope.random_array = random_array;
 
 		for (let i = 1; i <= rows; i++) {
@@ -48,12 +48,13 @@ class HomeController
 	onClick(index)
 	{
 		this.$scope.status = 1; //dirty
-		console.log(this.$scope.random_array)
+		
 		if(this.$scope.correct_ans_array.length<this.$scope.env.DIMONDS_COUNT){
 			if(this.$scope.random_array.indexOf(index)>=0)
 			{
 				this.$scope.correct_ans_array.push(index);
 				this.$scope.heigh_light = 0;
+				//console.log(this.$scope.random_array)
 				this.scoreFinder();
 			}
 			else
