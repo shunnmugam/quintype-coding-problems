@@ -1,10 +1,22 @@
 table.diamondsweeper-board {
+  margin: 0 auto;
   td {
     padding: 0;
     border: 1px solid black;
+    &.hint {
+      border: 1px solid red;
+      animation : flip;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      &>.cell
+      {
+        animation : flipChild;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+      }
+    }
   }
 }
-
 .cell {
   height: 50px;
   width: 50px;
@@ -19,6 +31,36 @@ table.diamondsweeper-board {
   }
 
   &.unknown {
+    background-image: url(question.png);
+  }
+}
+
+@keyframes flip {
+    0% {transform: rotateY(0deg);}
+    100% {transform: rotateY(360deg);}
+}
+
+@keyframes flipChild
+{
+  0%{
+    background-image: url(question.png);
+  }
+  18%{
+    background-image: url(question.png);
+  }
+  19%
+  {
+    background-image: url(diamond.png);
+  }
+  
+47%
+  {
+    background-image: url(diamond.png);
+  }
+  48%{
+    background-image: url(question.png);
+  }
+  100%{
     background-image: url(question.png);
   }
 }

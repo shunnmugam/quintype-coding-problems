@@ -16,7 +16,7 @@
     "webpack": "^3.5.5"
   },
   "scripts": {
-    "compile": "webpack",
+    "compile": "webpack --watch",
     "start": "node start.js",
     "test": "mocha"
   }
