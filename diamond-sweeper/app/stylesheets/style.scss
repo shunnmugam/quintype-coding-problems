@@ -1,8 +1,60 @@
+@import './_modal.scss';
+body{
+  margin: 0px;
+}
+.text-center
+{
+  text-align: center;
+}
+.header
+{
+    width: 100%;
+    float: left;
+    background-color: #19fb54;
+    color: white;
+    h1
+    {
+      margin: 6px 0px;
+    }
+}
+.main-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-image: url('./bg.jpg');
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      height: 100%;
+    }
+  .btn-container
+  {
+    width: 100%;
+    max-width: 433px;
+    padding-top: 10px;
+  }
+}
+button.reset-btn {
+      background-color: #19fb54;
+      border: unset;
+      color: white;
+      margin-bottom: 10px;
+      padding: 5px 16px;
+      border-radius: 6px;
+      float: right;
+      cursor: pointer;
+  }
 table.diamondsweeper-board {
   margin: 0 auto;
+  background-color: white;
+    box-shadow: 0px 6px 81px 15px #0e0e0e;
   td {
     padding: 0;
-    border: 1px solid black;
+    border: 1px solid #aba9a9;
+    box-shadow: 1px 1px 1px #a79797;
+    animation : colAnimation;
+    animation-duration : 3s;
     &.hint {
       border: 1px solid red;
       animation : flip;
@@ -32,7 +84,11 @@ table.diamondsweeper-board {
 
   &.unknown {
     background-image: url(question.png);
+    cursor: pointer;
   }
+}
+li.hint-list {
+    color: white;
 }
 
 @keyframes flip {
@@ -62,5 +118,19 @@ table.diamondsweeper-board {
   }
   100%{
     background-image: url(question.png);
+  }
+}
+
+@keyframes colAnimation
+{
+  0%
+  {
+    position: relative;
+    top: -100px;
+  }
+  100%
+  {
+    position: relative;
+    top: 0px;
   }
 }

@@ -10,7 +10,20 @@
   <body ng-app="dimond-game">
     <div id="container" ng-controller="HomeController">
       <div>
-        <div class="messages"></div>
+        <div class="header">
+          <h1 class="game-title text-center">
+            {{game_name}}
+          </h1>
+        </div>
+        <div class="main-container">
+          
+        
+        <div class="btn-container">
+          <button ng-click="restart()" class="reset-btn">
+            Restart
+          </button>
+        </div>
+        <div class="table-container">
         <table class="diamondsweeper-board">
           <tbody ng-init="count=0">
             <tr ng-repeat="r in table_details.rows">
@@ -20,7 +33,35 @@
             </tr>
           </tbody>
         </table>
+        
+        
+        <div class="hints-container">
+        <ul class="hint-lists">
+          <li class="hint-list">
+            The game board has {{env.ROWS_COUNT}}x{{env.COLUMNS_COUNT}} squares
+          </li>
+          <li class="hint-list">
+            There are {{env.DIMONDS_COUNT}} diamonds hidden on the board, each diamond behind one of the squares
+          </li>
+        </ul>
+        </div>
+        </div>
+        </div>
       </div>
+
+      <!-- modal -->
+      <div id="modal-container" class="{{final_score!='' ? 'four' : ''}}">
+        <div class="modal-background">
+          <div class="modal">
+            <h2>YOUR SCORE</h2>
+            <p>{{final_score}}</p>
+            <button ng-click="restart()" class="reset-btn">
+              Restart
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- modal end -->
     </div>
     <script type="text/javascript">startApp(document.getElementById("container"));</script>
   </body>

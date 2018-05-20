@@ -4,16 +4,21 @@ class HomeController
 	constructor($scope)
 	{
 		this.$scope = $scope;
-		this.$scope.game_name = env.GAME_NAME;
-		this.$scope.correct_ans_array = [];
-		this.$scope.wrong_ans_array = [];
-		this.$scope.final_score = '';
+
+		this.$scope.env = env;		
 		$scope.onClick = this.onClick.bind(this);
+		$scope.restart = this.restart.bind(this);
 		this.init();
 	}
 
 	init()
 	{
+		this.$scope.game_name = env.GAME_NAME;
+		this.$scope.correct_ans_array = [];
+		this.$scope.wrong_ans_array = [];
+		this.$scope.heigh_light = 0;
+		this.$scope.final_score = '';
+
 		const rows = env.ROWS_COUNT;
 		const col = env.COLUMNS_COUNT;
 		let rows_array = [];
@@ -68,6 +73,10 @@ class HomeController
 
 			}
 		}
+	}
+	restart()
+	{
+		this.init();
 	}
 	scoreFinder()
 	{
